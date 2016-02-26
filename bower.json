@@ -1,0 +1,30 @@
+{
+  "name": "humanizejs",
+  "description": "",
+  "main": "humanize.js",
+  "authors": [
+    "Arjun G"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "humanize",
+    "string",
+    "format",
+    "angular",
+    "filter"
+  ],
+  "homepage": "https://github.com/arjun-g/humanizejs",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
