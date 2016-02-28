@@ -22,6 +22,19 @@
   },
   "homepage": "https://github.com/arjun-g/humanizejs#readme",
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "angular": "^1.5.0",
+    "angular-mocks": "^1.5.0",
+    "gulp": "^3.9.1",
+    "gulp-minify": "0.0.5",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.21",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-firefox-launcher": "^0.1.7",
+    "karma-ie-launcher": "^0.2.0",
+    "karma-jasmine": "^0.3.7",
+    "karma-opera-launcher": "^0.3.0",
+    "karma-requirejs": "^0.2.5",
+    "karma-safari-launcher": "^0.1.1",
+    "requirejs": "^2.1.22"
   }
 }

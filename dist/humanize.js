@@ -84,14 +84,14 @@
             return value;
         }
         
-        var result = execRules(WORDS_SINGULAR_RULES, value)
+        var result = execRules(WORDS_PLURAL_RULES, value)
         
         if(isPlural){
             return result
         }
         
-        var plural = execRules(WORDS_PLURAL_RULES, value)
-        var pluralAsSingular = execRules(WORDS_SINGULAR_RULES, value)
+        var plural = execRules(WORDS_SINGULAR_RULES, value)
+        var pluralAsSingular = execRules(WORDS_PLURAL_RULES, value)
         
         if (plural != null && plural != value && plural + "s" != value && pluralAsSingular == value && result != value)
             return value
