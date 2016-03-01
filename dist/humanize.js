@@ -8,6 +8,7 @@
     var TYPE_SINGULARIZE = 'singularize'
 
     var BYTE_SIZE = 1024
+    var SIZE_NAMES = ['B', 'KB', 'MB', 'GB', 'TB', 'EB', 'ZB', 'YB']
     
     var WORDS_UNCOUNTABLES = ['equipment', 'information', 'rice', 'money', 'species', 'series', 'fish', 'sheep', 'deer', 'aircraft', 'oz', 'tsp', 'tbsp', 'ml', 'l', 'water', 'waters', 'semen', 'sperm']
     
@@ -37,16 +38,21 @@
     
     function toFileSize(value, decimal){
         decimal = ((decimal = (decimal == undefined) ? 2 : decimal)) > 20 ? 20 : decimal
-        if(value < (BYTE_SIZE / 2)) return (value.toFixed(0) + ' B')
-        else if(value >= (BYTE_SIZE / 2) && value < ((BYTE_SIZE / 2) * Math.pow(BYTE_SIZE, 1))) return ((value / (Math.pow(BYTE_SIZE, 1))).toFixed(decimal) + ' KB')
-        else if(value >= ((BYTE_SIZE / 2) * Math.pow(BYTE_SIZE, 1)) && value < ((BYTE_SIZE / 2) * Math.pow(BYTE_SIZE, 2))) return ((value / (Math.pow(BYTE_SIZE, 2))).toFixed(decimal) + ' MB')
-        else if(value >= ((BYTE_SIZE / 2) * Math.pow(BYTE_SIZE, 2)) && value < ((BYTE_SIZE / 2) * Math.pow(BYTE_SIZE, 3))) return ((value / (Math.pow(BYTE_SIZE, 3))).toFixed(decimal) + ' GB')
-        else if(value >= ((BYTE_SIZE / 2) * Math.pow(BYTE_SIZE, 3)) && value < ((BYTE_SIZE / 2) * Math.pow(BYTE_SIZE, 4))) return ((value / (Math.pow(BYTE_SIZE, 4))).toFixed(decimal) + ' TB')
-        else if(value >= ((BYTE_SIZE / 2) * Math.pow(BYTE_SIZE, 4)) && value < ((BYTE_SIZE / 2) * Math.pow(BYTE_SIZE, 5))) return ((value / (Math.pow(BYTE_SIZE, 5))).toFixed(decimal) + ' PB')
-        else if(value >= ((BYTE_SIZE / 2) * Math.pow(BYTE_SIZE, 5)) && value < ((BYTE_SIZE / 2) * Math.pow(BYTE_SIZE, 6))) return ((value / (Math.pow(BYTE_SIZE, 6))).toFixed(decimal) + ' EB')
-        else if(value >= ((BYTE_SIZE / 2) * Math.pow(BYTE_SIZE, 6)) && value < ((BYTE_SIZE / 2) * Math.pow(BYTE_SIZE, 7))) return ((value / (Math.pow(BYTE_SIZE, 7))).toFixed(decimal) + ' ZB')
-        else if(value >= ((BYTE_SIZE / 2) * Math.pow(BYTE_SIZE, 7))) return ((value / (Math.pow(BYTE_SIZE, 8))).toFixed(decimal) + ' YB')
-        else return value
+        var i = 0;
+        while(i < SIZE_NAMES.length){
+            if(value < (byteSize(i + 1) / 2)){
+                if(i == 0) return (value + " " + SIZE_NAMES[i]);
+                return (value / byteSize(i)).toFixed(decimal).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1') + " " + SIZE_NAMES[i];
+            }
+            if(i == (SIZE_NAMES.length - 1)){
+                return (value / byteSize(i)).toFixed(decimal).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1') + " " + SIZE_NAMES[i];
+            }
+            i++;
+        }
+    }
+    
+    function byteSize(pow){
+        return Math.pow(BYTE_SIZE, pow);
     }
     
     function toOrdinal(value){
@@ -84,14 +90,14 @@
             return value;
         }
         
-        var result = execRules(WORDS_PLURAL_RULES, value)
+        var result = execRules(WORDS_SINGULAR_RULES, value)
         
         if(isPlural){
             return result
         }
         
-        var plural = execRules(WORDS_SINGULAR_RULES, value)
-        var pluralAsSingular = execRules(WORDS_PLURAL_RULES, value)
+        var plural = execRules(WORDS_PLURAL_RULES, value)
+        var pluralAsSingular = execRules(WORDS_SINGULAR_RULES, value)
         
         if (plural != null && plural != value && plural + "s" != value && pluralAsSingular == value && result != value)
             return value
