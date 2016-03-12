@@ -24,6 +24,6 @@
         }, done).start();
     })
     
-    gulp.task('default', ['build'])
+    gulp.task('default', ['test', 'build'])
     
 })();
