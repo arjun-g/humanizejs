@@ -24,7 +24,7 @@
                               ['(matr|vert|ind)ix|ex$', '$1ices'], ['([m|l])ouse$', '$1ice'], ['^(ox)$', '$1en'], ['(quiz)$', '$1zes'], ['(campus)$', '$1es'], ['^is$', 'are'], ['(p)erson$', '$1eople'],
                               ['(m)an$', '$1en'], ['(c)hild$', '$1hildren'], ['(s)ex$', '$1exes'], ['(m)ove$', '$1oves'], ['(g)oose$', '$1eese'], ['(a)lumna$', '$1lumnae'], ['(c)riterion$', '$1riteria'], ['(w)ave$', '$1aves']]
                               
-    var ORDINAL_RULES = [['$', 'th'], ['(3)$', '$1rd'], ['(2)$', '$1nd'], ['(1)$', '$1st'], ['(1[1|2|3])$', '$1th']]                          
+    var ORDINAL_RULES = [['$', 'th'], ['(3)$', '$1rd'], ['(2)$', '$1nd'], ['(1)$', '$1st'], ['(1[1|2|3])$', '$1th']]
     
     function humanize() {
         return {
@@ -42,13 +42,17 @@
         while(i < SIZE_NAMES.length){
             if(value < (byteSize(i + 1) / 2)){
                 if(i == 0) return (value + " " + SIZE_NAMES[i]);
-                return (value / byteSize(i)).toFixed(decimal).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1') + " " + SIZE_NAMES[i];
+                return removeTrailingZeros((value / byteSize(i)).toFixed(decimal)) + " " + SIZE_NAMES[i];
             }
             if(i == (SIZE_NAMES.length - 1)){
-                return (value / byteSize(i)).toFixed(decimal).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1') + " " + SIZE_NAMES[i];
+                return removeTrailingZeros((value / byteSize(i)).toFixed(decimal)) + " " + SIZE_NAMES[i];
             }
             i++;
         }
+    }
+    
+    function removeTrailingZeros(value){
+        return value.replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1');
     }
     
     function byteSize(pow){
