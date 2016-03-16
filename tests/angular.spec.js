@@ -9,6 +9,12 @@ describe('angular filter', function(){
         });
     })
     
+    it('should convert file size', function(){
+        var value = 123456789;
+        var result = $filter('humanize')(value, 'filesize')
+        expect(result).toEqual('117.74 MB')
+    })
+    
     it('should ordinalize', function(){
         var value = 1;
         var result = $filter('humanize')(value, 'ordinal')

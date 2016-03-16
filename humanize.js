@@ -38,25 +38,25 @@
     
     function toFileSize(value, decimal){
         decimal = ((decimal = (decimal == undefined) ? 2 : decimal)) > 20 ? 20 : decimal
-        var i = 0;
+        var i = 0
         while(i < SIZE_NAMES.length){
             if(value < (byteSize(i + 1) / 2)){
-                if(i == 0) return (value + " " + SIZE_NAMES[i]);
-                return removeTrailingZeros((value / byteSize(i)).toFixed(decimal)) + " " + SIZE_NAMES[i];
+                if(i == 0) return (value + " " + SIZE_NAMES[i])
+                return removeTrailingZeros((value / byteSize(i)).toFixed(decimal)) + " " + SIZE_NAMES[i]
             }
             if(i == (SIZE_NAMES.length - 1)){
-                return removeTrailingZeros((value / byteSize(i)).toFixed(decimal)) + " " + SIZE_NAMES[i];
+                return removeTrailingZeros((value / byteSize(i)).toFixed(decimal)) + " " + SIZE_NAMES[i]
             }
-            i++;
+            i++
         }
     }
     
     function removeTrailingZeros(value){
-        return value.replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1');
+        return value.replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/,'$1')
     }
     
     function byteSize(pow){
-        return Math.pow(BYTE_SIZE, pow);
+        return Math.pow(BYTE_SIZE, pow)
     }
     
     function toOrdinal(value){
@@ -70,7 +70,7 @@
     function pluralize(value, isSingular){
         
         if(WORDS_UNCOUNTABLES.indexOf(value.toLowerCase()) >= 0){
-            return value;
+            return value
         }
         
         var result = execRules(WORDS_PLURAL_RULES, value)
@@ -91,7 +91,7 @@
     function singularize(value, isPlural){
         
         if(WORDS_UNCOUNTABLES.indexOf(value.toLowerCase()) >= 0){
-            return value;
+            return value
         }
         
         var result = execRules(WORDS_SINGULAR_RULES, value)
