@@ -1,3 +1,5 @@
+[![Gitter](https://badges.gitter.im/arjun-g/humanizejs.svg)](https://gitter.im/arjun-g/humanizejs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 [![Build Status](https://travis-ci.org/arjun-g/humanizejs.svg?branch=master)](https://travis-ci.org/arjun-g/humanizejs)
 
 # humanizejs
