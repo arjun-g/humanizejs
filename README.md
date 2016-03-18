@@ -4,6 +4,8 @@
 
 # humanizejs
 
+[![Join the chat at https://gitter.im/arjun-g/humanizejs](https://badges.gitter.im/arjun-g/humanizejs.svg)](https://gitter.im/arjun-g/humanizejs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ##Getting started
 
 ###Bower
