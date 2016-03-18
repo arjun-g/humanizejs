@@ -4,8 +4,9 @@ describe('extend prototype', function(){
         humanize.extendPrototype();
     })
     
-    it('should test filter', function(){
-        expect((1).toOrdinal()).toEqual('1st')
+    it('should test extend prototype', function(){
+        var value = 1;
+        expect(value.toOrdinal()).toEqual('1st')
     })
     
 })

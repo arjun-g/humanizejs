@@ -177,3 +177,57 @@ angular.module('app').controller('AppController', ['dependancy', function(depend
 ```html
 <span>{{value | humanize : 'singularize'}}</span>      <!-- <span>man</span> -->
 ```
+
+###Extend Prototype
+
+Extends the primitive data types of javascript to have the above functions attached to them.
+
+```javascript
+humanize.extendPrototype()
+```
+
+**Eg**
+```javascript
+humanize.extendPrototype()
+
+var size = 123456789;
+var result1 = size.toFileSize();     //result1 = 117.74 MB
+var result2 = size.toFileSize(4);    //result2 = 117.7376 MB
+
+var number = 10
+var result3 = number.toOrdinal()     //result3 = 10th
+
+
+var string1 = "man"
+var result4 = string1.pluralize()    //result4 = men
+
+var string2 = "Men"
+var result5 = string2.singularize()  //result5 = Man
+```
+
+###Build & Test
+
+humanizejs requires gulp for building and karma for testing. Make sure these two are installed globally before building or testing. 
+
+```bash
+npm install -g gulp
+npm install -g karma
+```
+
+Start with installing all the required packages
+
+```bash
+npm install
+```
+
+####Build
+
+```bash
+gulp build
+```
+
+####Test
+
+```bash
+gulp test
+```
